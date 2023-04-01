@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <title>Invite</title>
+
+    <script src="../js/script.js"></script>
+    <style>
+      /* Set height of body and the document to 100% */
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        font-family: "Times New Roman";
+        background-repeat: no-repeat;
+        background-size: 10%;
+        background-position: left bottom;
+        background-color: rgba(255, 241, 196, 255);
+      }
+
+      form {
+        border: 3px solid rgb(80, 63, 52);
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+      }
+
+      .button {
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        background-color: rgb(80, 63, 52);
+      }
+      .menu {
+        color: white;
+        padding: 14px 20px;
+        margin: 20px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        background-color: rgb(80, 63, 52);
+      }
+
+      input,
+      select,
+      textarea {
+        color: rgb(80, 63, 52);
+      }
+      button:hover {
+        opacity: 0.8;
+      }
+
+      .container {
+        padding: 16px;
+      }
+
+      h2 {
+        text-align: center;
+      }
+      .navbar {
+        display: flex;
+
+        justify-content: space-between;
+
+        padding: 20px;
+
+        color: #fff;
+      }
+
+      .nav-links a {
+        color: white;
+        padding: 14px 20px;
+        margin: 20px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        background-color: rgb(80, 63, 52);
+      }
+      .logout {
+        position: absolute;
+        right: 0;
+      }
+
+      .center {
+        align-content: center;
+      }
+
+      table tr td.busy {
+        background-color: red;
+      }
+
+      table tr td.free {
+        background-color: green;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="nav-links">
+          <a href="home">Home</a>
+          <a href="send">Send</a>
+          <a href="view">View</a>
+          <div class="logout">
+            <a href="logout">Logout</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <h2>Invite</h2>
+
+      <form action="/sendInvite" method="POST">
+        <div class="container">
+
+          Place:
+          <input name="placeInput" type="text" value="" required />
+
+          List of Participants:
+            <br/>
+          {% for timeline in timelines %}
+            <label for="{{timeline['externalUuid']}}">{{timeline['startDate']}} -> {{timeline['endDate']}}</label>
+            <input id="{{timeline['externalUuid']}}" type="checkbox" name="participant" value="{{timeline['externalUuid']}}">{{timeline['username']}}<br>
+         {% endfor %}
+            <br />
+          Comment:
+          <input name="commentInput" type="textarea"  value="b" required />
+          <button type="submit" class="button">Send invite</button>
+        </div>
+      </form>
+
+      <br />
+      <br />
+    </main>
+  </body>
+</html>

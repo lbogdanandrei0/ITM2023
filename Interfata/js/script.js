@@ -16,20 +16,3 @@ function ModifyTime(ii) {
 
 }
 
-var data = document.querySelectorAll('#data-table tr td select');
-
-data.forEach(function(item) {
-  setColor(item);
-
-  item.addEventListener('change', function() {
-    setColor(this);
-  });
-});
-
-function setColor(element) {
-  var container = element.parentElement;
-  container.classList.remove('free','busy');
-
-  var value = element.options[element.selectedIndex].value;
-  container.classList.add(value);
-}

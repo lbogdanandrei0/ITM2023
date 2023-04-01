@@ -126,28 +126,31 @@
     <main>
       <h2>Profile</h2>
 
-      <form action="/modify" method="POST">
+      <form action="/update" method="POST"  enctype="multipart/form-data">
         <div class="container">
+            Username:
+          <input type="text" name="username" value="{{info['username']}}" disabled />
+
           First Name:
-          <input type="text" value="Alex" required />
+          <input type="text" name="firstName" value="{{info['firstName']}}" required />
 
           Last Name:
-          <input type="text" value="Pop" required />
+          <input type="text" name="lastName" value="{{info['lastName']}}" required />
 
           Departament:
-          <input type="text" value="a" required />
+          <input type="text"  name="department" value="{{info['department']}}" required />
 
           Office Name:
-          <input type="text" value="b" required />
+          <input type="text" name="officeName" value="{{info['officeName']}}" required />
 
           Team Name:
-          <input type="text" value="c" required />
+          <input type="text" name="teamName" value="{{info['teamName']}}" required />
 
           Floor Number:
-          <input type="number" value="2" required />
+          <input type="number" name="floorNumber"  value="{{info['floorNumber']}}" required />
 
           Profile Picture:
-          <input type="file" accept="image/png, image/jpeg" />
+          <input type="file" name="profilePicName" accept="image/png, image/jpeg" />
 
           <button type="submit" class="button">Submit changes</button>
         </div>
@@ -177,10 +180,12 @@
               <select>
                  {% if element[2]=="Busy"%}
                 <option value="free">Free</option>
-                 {% else %}
-                   <option value="free">Busy</option>
-                 {% endif %}
                 <option value="busy" selected>{{element[2]}}</option>
+                 {% else %}
+                   <option value="busy">Busy</option>
+                   <option value="free" selected>{{element[2]}}</option>
+                 {% endif %}
+
 
               </select>
             </td>

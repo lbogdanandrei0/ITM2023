@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface TimelineRepository extends JpaRepository<Timeline, Long> {
@@ -16,5 +17,8 @@ public interface TimelineRepository extends JpaRepository<Timeline, Long> {
 
     @Query(nativeQuery = true, value = "select * from user_timeline where start_date >= cast(:startDate as timestamp) and end_date <= cast(:endDate as timestamp)")
     List<Timeline> findTimelinesBetween(@Param("startDate") String startDate, @Param("endDate") String endDate);
+
+    @Query(nativeQuery = true, value = "select * from user_timeline where external_uuid = cast(:externalUuid as uuid)")
+    Optional<Timeline> findByExternalUuid(@Param("externalUuid") String externalUuid);
 
 }

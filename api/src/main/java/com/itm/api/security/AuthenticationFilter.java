@@ -76,6 +76,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
             }
             if (loginResponse != null && loginResponse.getLoginSession() != 0) {
                 userAuth = new UserAuth(auth.getUsername(), null, List.of());
+                return userAuth;
             }
         } catch (Exception e) {
             LOGGER.info("Credentials auth failed", e);
@@ -102,6 +103,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
             }
             if (loginResponse != null && loginResponse.getLoginSession() != 0) {
                 userAuth = new UserAuth(auth.getUsername(), null, List.of());
+                return userAuth;
             }
         } catch (Exception e) {
             LOGGER.info("Active session auth failed", e);
@@ -116,11 +118,12 @@ public class AuthenticationFilter extends OncePerRequestFilter {
         }
         auth = auth.replaceAll("Basic ", "");
         String[] parts = new String(Base64.getDecoder().decode(auth.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8).split(":");
-        if (parts.length != 2) {
-            return loginDTO;
+        if (parts.length >= 1) {
+            loginDTO.setUsername(parts[0]);
         }
-        loginDTO.setUsername(parts[0]);
-        loginDTO.setPassword(parts[1]);
+        if (parts.length >= 2) {
+            loginDTO.setPassword(parts[1]);
+        }
         return loginDTO;
     }
 }
