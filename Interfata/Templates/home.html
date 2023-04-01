@@ -91,39 +91,40 @@
     <main>
       <div class="tabcontent">
         <div class="center">
-          <h1>Cauta</h1>
+          <img src="/img/profile.png" alt="Profile Picture">
+          <h1>Welcome {{username}}!</h1>
+          <h2>Search</h2>
 
-          <form class="was-validated" method="POST" action="/search">
-            Nume:
+          <form class="was-validated" method="POST" action="/search" >
+            Username:
             <div class="col-6 col-sm-3">
               <input
                 class="form-control"
-                name="nume"
+                name="username"
                 type="text"
                 placeholder="ex. Alex"
-                pattern="[a-zA-Z\s]+"
                 required
               />
             </div>
 
             <br />
-            <button class="btn btn-outline-dark" type="submit">Adauga</button>
+            <button class="btn btn-outline-dark" type="submit">Search</button>
           </form>
         </div>
       </div>
       <br />
       <div id="person">
         <div class="center">
-          <h2>Persoane gasite recent</h2>
+          <h2>Recent</h2>
           <br />
           <table style="width: 70%">
+                 {% for element in info %}
+             {% if element != "\n" %}
             <tr>
-              <th>Nume</th>
+              <th>{{element}}</th>
             </tr>
-
-            <tr>
-              <td></td>
-            </tr>
+            {% endif %}
+                 {% endfor %}
           </table>
           <br /><br /><br />
         </div>

@@ -116,7 +116,7 @@
         <div class="nav-links">
           <a href="home">Home</a>
           <a href="send">Send</a>
-          <a href="view">View</a>
+          <a href="profile">Profile</a>
           <div class="logout">
             <a href="logout">Logout</a>
           </div>
@@ -124,77 +124,28 @@
       </nav>
     </header>
     <main>
-      <h2>Profile</h2>
+      <h2>List of requests</h2>
 
-      <form action="/update" method="POST"  enctype="multipart/form-data">
-        <div class="container">
-            Username:
-          <input type="text" name="username" value="{{info['username']}}" disabled />
-
-          First Name:
-          <input type="text" name="firstName" value="{{info['firstName']}}" required />
-
-          Last Name:
-          <input type="text" name="lastName" value="{{info['lastName']}}" required />
-
-          Departament:
-          <input type="text"  name="department" value="{{info['department']}}" required />
-
-          Office Name:
-          <input type="text" name="officeName" value="{{info['officeName']}}" required />
-
-          Team Name:
-          <input type="text" name="teamName" value="{{info['teamName']}}" required />
-
-          Floor Number:
-          <input type="number" name="floorNumber"  value="{{info['floorNumber']}}" required />
-
-          Profile Picture:
-          <input type="file" name="profilePicName" accept="image/png, image/jpeg" />
-
-          <button type="submit" class="button">Submit changes</button>
-        </div>
-      </form>
-
-      <br />
-      <br />
-
-      <div class="center">
-        <h2>TimeLine</h2>
-        <br />
-        <table class="container" id="data-table">
-          <tr style="background: none">
-            <th>Time</th>
-            <th></th>
-            <td>State</td>
-          </tr>
-            {% for element in elements %}
-              {% if element[2]=="Busy"%}
-          <tr style="background-color: red">
-            {% else %}
-          <tr style="background-color: green">
-                     {% endif %}
-            <td>{{element[0]}}</td>
-            <td>{{element[1]}}</td>
-            <td>
-              <select>
-                 {% if element[2]=="Busy"%}
-                <option value="free">Free</option>
-                <option value="busy" selected>{{element[2]}}</option>
-                 {% else %}
-                   <option value="busy">Busy</option>
-                   <option value="free" selected>{{element[2]}}</option>
-                 {% endif %}
-
-
-              </select>
-            </td>
-          </tr>
-          	{% endfor %}
-
-        </table>
-        <br /><br /><br />
-      </div>
+      <table class="container" id="data-table">
+        <tr style="background: none">
+          <th>Initiator</th>
+          <th>Place</th>
+          <th>Time</th>
+          <th>List of Paticipants</th>
+          <th>Comment</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><button type="submit" class="button">Accept</button></td>
+          <td><button type="submit" class="button">Decline</button></td>
+        </tr>
+      </table>
     </main>
   </body>
 </html>
