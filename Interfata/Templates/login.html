@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <title>Login</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        width: 200px;
+        margin: auto;
+        background-color: rgba(255, 241, 196, 255);
+      }
+      form {
+        border: 3px solid #634e40;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+      }
+
+      button {
+        background-color: #04aa6d;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      button:hover {
+        opacity: 0.8;
+      }
+
+      .container {
+        padding: 16px;
+      }
+      h2 {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Login</h2>
+
+    <form action="/home" method="POST">
+      <div class="container">
+        Username:
+        <input
+          type="text"
+          name="username"
+          placeholder="Enter Username"
+          required
+        />
+
+        Password:
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter Password"
+          required
+        />
+
+        <button type="submit">Login</button>
+      </div>
+    </form>
+  </body>
+</html>
