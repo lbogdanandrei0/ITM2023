@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <title>Home</title>
+
+    <style>
+      /* Set height of body and the document to 100% */
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        font-family: "Times New Roman";
+        background-repeat: no-repeat;
+        background-size: 10%;
+        background-position: left bottom;
+        background-color: rgba(255, 241, 196, 255);
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid gray;
+        border-collapse: collapse;
+        border-color: rgb(80, 63, 52);
+        text-align: center;
+      }
+      th,
+      td {
+        padding: 10px;
+      }
+
+      input,
+      select,
+      textarea {
+        color: rgb(80, 63, 52);
+      }
+      tabcontent {
+        width: 200px;
+        margin: auto;
+      }
+      .navbar {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        padding: 20px;
+
+        color: #fff;
+      }
+
+      .nav-links a {
+        color: white;
+        padding: 14px 20px;
+        margin: 20px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        background-color: rgb(80, 63, 52);
+      }
+      .logout {
+        position: absolute;
+        right: 0;
+      }
+
+      .center {
+        align-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="nav-links">
+          <a href="profile">Profile</a>
+          <a href="send">Send</a>
+          <a href="view">View</a>
+          <div class="logout">
+            <a href="logout">Logout</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="tabcontent">
+        <div class="center">
+          <h1>Cauta</h1>
+
+          <form class="was-validated" method="POST" action="/search">
+            Nume:
+            <div class="col-6 col-sm-3">
+              <input
+                class="form-control"
+                name="nume"
+                type="text"
+                placeholder="ex. Alex"
+                pattern="[a-zA-Z\s]+"
+                required
+              />
+            </div>
+
+            <br />
+            <button class="btn btn-outline-dark" type="submit">Adauga</button>
+          </form>
+        </div>
+      </div>
+      <br />
+      <div id="person">
+        <div class="center">
+          <h2>Persoane gasite recent</h2>
+          <br />
+          <table style="width: 70%">
+            <tr>
+              <th>Nume</th>
+            </tr>
+
+            <tr>
+              <td></td>
+            </tr>
+          </table>
+          <br /><br /><br />
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
