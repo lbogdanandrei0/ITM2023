@@ -2,6 +2,7 @@ package com.itm.api.request;
 
 import com.itm.api.base.exception.BreakRequestNotFound;
 import com.itm.api.base.exception.InvalidUserList;
+import com.itm.api.base.exception.UserNotFoundException;
 import com.itm.api.request.model.BreakRequest;
 import com.itm.api.request.model.dto.BreakRequestDTO;
 import com.itm.api.timeline.TimelineService;
@@ -38,9 +39,15 @@ public class BreakRequestService {
         if (timelines.isEmpty()) {
             throw new InvalidUserList("Break requests require at least 1 invitation");
         }
+        String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Optional<User> initiator = userService.findUserByUsername(username);
+        if (initiator.isEmpty()) {
+            throw new UserNotFoundException("User not found");
+        }
         BreakRequest newBreakRequest = breakRequestMapper.breakRequestDTOToBreakRequest(breakRequestDTO);
         newBreakRequest.setTimelines(timelines);
         newBreakRequest.setExternalUuid(UUID.randomUUID());
+        newBreakRequest.setInitiator(initiator.get());
         return breakRequestMapper.breakRequestToBreakRequestDTO(breakRequestRepository.save(newBreakRequest));
     }
 

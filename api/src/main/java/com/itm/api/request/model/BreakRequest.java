@@ -25,6 +25,10 @@ public class BreakRequest {
     @Column
     private String comment;
 
+    @OneToOne(targetEntity = User.class)
+    @JoinColumn(name = "initiator", referencedColumnName = "id")
+    private User initiator;
+
     @Column
     private UUID externalUuid;
 
