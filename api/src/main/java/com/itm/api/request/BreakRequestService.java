@@ -67,6 +67,7 @@ public class BreakRequestService {
 
     public List<BreakRequestDTO> getBreakRequestByUser() {
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        // TODO: replace findAll
         return breakRequestMapper.breakRequestToBreakRequestDTO(breakRequestRepository.findAll().stream().map(breakRequest -> {
             if (breakRequest.getTimelines() != null && userHadBeenInvited(username, breakRequest.getTimelines())) {
                 return breakRequest;
