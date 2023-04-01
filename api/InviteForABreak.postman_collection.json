@@ -96,8 +96,35 @@
 		{
 			"name": "APILogin",
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "TestUser11",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "TestUser11",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "localhost:9091/api/user/login",
+					"host": [
+						"localhost"
+					],
+					"port": "9091",
+					"path": [
+						"api",
+						"user",
+						"login"
+					]
+				}
 			},
 			"response": []
 		},
@@ -131,11 +158,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/user/save-profile",
+					"raw": "localhost:9091/api/user/save-profile",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "9091",
 					"path": [
 						"api",
 						"user",
@@ -166,11 +193,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/user/logout",
+					"raw": "localhost:9091/api/user/logout",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "9091",
 					"path": [
 						"api",
 						"user",
@@ -201,11 +228,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/user/timeline",
+					"raw": "localhost:9091/api/user/timeline",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "9091",
 					"path": [
 						"api",
 						"user",
@@ -245,11 +272,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/user/add-timeline",
+					"raw": "localhost:9091/api/user/add-timeline",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "9091",
 					"path": [
 						"api",
 						"user",
@@ -280,11 +307,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/timeline/range?startDate=2023-04-01T13:00:00Z&endDate=2023-04-01T14:00:00Z",
+					"raw": "localhost:9091/api/timeline/range?startDate=2023-04-01T13:00:00Z&endDate=2023-04-01T14:00:00Z",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "9091",
 					"path": [
 						"api",
 						"timeline",
