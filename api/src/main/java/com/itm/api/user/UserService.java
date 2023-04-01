@@ -1,10 +1,13 @@
 package com.itm.api.user;
 
+import com.itm.api.base.exception.InvalidCredentialsException;
+import com.itm.api.base.exception.UserNotFoundException;
 import com.itm.api.timeline.TimelineService;
 import com.itm.api.user.model.User;
 import com.itm.api.user.model.dto.LogoutDTO;
 import com.itm.api.user.model.dto.UserDTO;
 import com.itm.api.timeline.model.dto.UserTimelineDTO;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.List;
@@ -24,6 +27,9 @@ public class UserService {
     }
 
     public UserDTO login() {
+        if (SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken) {
+            throw new InvalidCredentialsException("Invalid credentials");
+        }
         String username = (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Optional<User> existingUser = userRepository.findByUsername(username);
         if (existingUser.isPresent()) {
@@ -47,7 +53,7 @@ public class UserService {
     public UserDTO updateUser(UserDTO userDTO) {
         Optional<User> existingUser = userRepository.findByUsername(userDTO.getUsername());
         if (existingUser.isEmpty()) {
-            return null;
+            throw new UserNotFoundException("User not found");
         }
         User providedUser = userMapper.userDTOToUser(userDTO);
         User updatedUser = existingUser.get();
@@ -58,13 +64,13 @@ public class UserService {
     public List<UserTimelineDTO> getTimelines() {
         String username = (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Optional<User> existingUser = userRepository.findByUsername(username);
-        return existingUser.map(user -> timelineService.getTimelines(user.getId())).orElse(null);
+        return existingUser.map(user -> timelineService.getTimelines(user.getId())).orElseThrow(() -> new UserNotFoundException("User not found"));
     }
 
     public UserTimelineDTO addTimeline(UserTimelineDTO userTimelineDTO) {
         String username = (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Optional<User> existingUser = userRepository.findByUsername(username);
-        return existingUser.map(user -> timelineService.addTimeline(userTimelineDTO, user)).orElse(null);
+        return existingUser.map(user -> timelineService.addTimeline(userTimelineDTO, user)).orElseThrow(() -> new UserNotFoundException("User not found"));
     }
 
 }

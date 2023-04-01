@@ -76,6 +76,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
             }
             if (loginResponse != null && loginResponse.getLoginSession() != 0) {
                 userAuth = new UserAuth(auth.getUsername(), null, List.of());
+                return userAuth;
             }
         } catch (Exception e) {
             LOGGER.info("Credentials auth failed", e);
@@ -102,6 +103,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
             }
             if (loginResponse != null && loginResponse.getLoginSession() != 0) {
                 userAuth = new UserAuth(auth.getUsername(), null, List.of());
+                return userAuth;
             }
         } catch (Exception e) {
             LOGGER.info("Active session auth failed", e);
