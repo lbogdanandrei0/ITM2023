@@ -130,20 +130,24 @@
         <tr style="background: none">
           <th>Initiator</th>
           <th>Place</th>
-          <th>Time</th>
           <th>List of Paticipants</th>
           <th>Comment</th>
           <th></th>
           <th></th>
         </tr>
+        {% for element in data %}
         <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td>{{element['initiator']['username']}}</td>
+          <td>{{element['place']}}</td>
+          <td>
+          {% for timeline in element['timelines'] %}
+            {{timeline['username']}}<br >
+          {% endfor %}
+          </td>
+          <td>{{element['comment']}}</td>
           <td><button type="submit" class="button">Accept</button></td>
           <td><button type="submit" class="button">Decline</button></td>
+        {% endfor %}
         </tr>
       </table>
     </main>

@@ -126,24 +126,21 @@
     <main>
       <h2>Invite</h2>
 
-      <form action="/modify" method="POST">
+      <form action="/sendInvite" method="POST">
         <div class="container">
-          Initiator:
-          <input type="text" value="Alex" required />
 
           Place:
-          <input type="text" value="Pop" required />
+          <input name="placeInput" type="text" value="" required />
 
-          Time:
-          <input type="text" value="a" required />
-
-          List of Paticipants:
+          List of Participants:
             <br/>
-          <input type="checkbox" name="name" value="Name">Name<br>
-
+          {% for timeline in timelines %}
+            <label for="{{timeline['externalUuid']}}">{{timeline['startDate']}} -> {{timeline['endDate']}}</label>
+            <input id="{{timeline['externalUuid']}}" type="checkbox" name="participant" value="{{timeline['externalUuid']}}">{{timeline['username']}}<br>
+         {% endfor %}
             <br />
           Comment:
-          <input type="text" value="b" required />
+          <input name="commentInput" type="textarea"  value="b" required />
           <button type="submit" class="button">Send invite</button>
         </div>
       </form>
