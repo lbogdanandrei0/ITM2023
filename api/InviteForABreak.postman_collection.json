@@ -215,12 +215,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "TestUser11",
+							"value": "TestUser12",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "TestUser11",
+							"value": "TestUser12",
 							"type": "string"
 						}
 					]
@@ -328,6 +328,57 @@
 						}
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "ApiAddBreakRequest",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "TestUser12",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "TestUser12",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"comment\": \"some comment\",\n    \"place\": \"some location\",\n    \"timelineUuids\": [\"f3bf033a-b866-43b6-ac93-5f9e279e9af4\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9091/api/break-request",
+					"host": [
+						"localhost"
+					],
+					"port": "9091",
+					"path": [
+						"api",
+						"break-request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ApiGetBreakRequestsByUser",
+			"request": {
+				"method": "GET",
+				"header": []
 			},
 			"response": []
 		}
