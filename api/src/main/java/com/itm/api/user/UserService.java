@@ -73,5 +73,9 @@ public class UserService {
         return existingUser.map(user -> timelineService.addTimeline(userTimelineDTO, user)).orElseThrow(() -> new UserNotFoundException("User not found"));
     }
 
+    public Optional<User> findUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
 }
 

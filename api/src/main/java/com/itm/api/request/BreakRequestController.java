@@ -1,12 +1,12 @@
 package com.itm.api.request;
 
+import com.itm.api.base.validation.PostValidation;
 import com.itm.api.request.model.dto.BreakRequestDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/break-request")
@@ -19,8 +19,18 @@ public class BreakRequestController {
     }
 
     @PostMapping
-    public ResponseEntity<BreakRequestDTO> addBreakRequest(@RequestBody @Validated(PostMapping.class) BreakRequestDTO breakRequest) {
+    public ResponseEntity<BreakRequestDTO> addBreakRequest(@RequestBody @Validated(PostValidation.class) BreakRequestDTO breakRequest) {
         return ResponseEntity.ok(breakRequestService.createBreakRequest(breakRequest));
+    }
+
+    @PatchMapping
+    public ResponseEntity<BreakRequestDTO> updateBreakRequest(@RequestBody @Validated(PatchMapping.class) BreakRequestDTO breakRequestDTO) {
+        return ResponseEntity.ok(breakRequestService.updateBreakRequest(breakRequestDTO));
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<BreakRequestDTO>> getBreakRequests() {
+        return ResponseEntity.ok(breakRequestService.getBreakRequestByUser());
     }
 
 }

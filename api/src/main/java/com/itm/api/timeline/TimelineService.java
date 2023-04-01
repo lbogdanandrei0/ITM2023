@@ -8,6 +8,7 @@ import com.itm.api.timeline.model.dto.UserTimelineDTO;
 import java.time.Instant;
 import java.time.ZoneOffset;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class TimelineService {
@@ -40,6 +41,10 @@ public class TimelineService {
     public List<EnhancedUserTimelineDTO> getTimelinesBetweenRange(String startDate, String endDate) {
         List<Timeline> timelines = timelineRepository.findTimelinesBetween(startDate.toString(), endDate.toString());
         return timelineMapper.timelinesToEnhancedTimelinesDTO(timelines);
+    }
+
+    public Optional<Timeline> findByExternalUuid(String externalUuid) {
+        return timelineRepository.findByExternalUuid(externalUuid);
     }
 
 }

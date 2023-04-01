@@ -1,5 +1,7 @@
 package com.itm.api.request;
 
+import com.itm.api.timeline.TimelineService;
+import com.itm.api.user.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -11,8 +13,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class BreakRequestConfiguration {
 
     @Bean
-    public BreakRequestService breakRequestService(BreakRequestRepository breakRequestRepository) {
-        return new BreakRequestService(breakRequestRepository);
+    public BreakRequestService breakRequestService(BreakRequestRepository breakRequestRepository, BreakRequestMapper breakRequestMapper, UserService userService, TimelineService timelineService) {
+        return new BreakRequestService(breakRequestRepository, breakRequestMapper, userService, timelineService);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.itm.api.base;
 
 import com.itm.api.base.exception.InvalidCredentialsException;
+import com.itm.api.base.exception.InvalidUserList;
 import com.itm.api.base.exception.UserNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,11 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = { UserNotFoundException.class })
     protected ResponseEntity<Object> handleUserNotFound(RuntimeException ex, WebRequest request) {
+        return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+    }
+
+    @ExceptionHandler(value = { InvalidUserList.class })
+    protected ResponseEntity<Object> handleInvalidUserList(RuntimeException ex, WebRequest request) {
         return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 

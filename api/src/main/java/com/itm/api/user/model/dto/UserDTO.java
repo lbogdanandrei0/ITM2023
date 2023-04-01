@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Null;
 import java.util.UUID;
 
 @Getter
@@ -19,8 +20,11 @@ public class UserDTO {
     private String officeName;
     private String teamName;
     private Integer floorNumber;
+    @Null(groups = {PatchValidation.class})
     private String profilePicLocation;
+    @Null(groups = {PatchValidation.class})
     private String profilePicName;
+    @Null(groups = {PatchValidation.class})
     private UUID externalUuid;
     
 }
