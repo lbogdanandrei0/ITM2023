@@ -23,5 +23,5 @@ public class BreakRequest {
     private String comment;
 
     @Column
-    private UUID external_uuid;
+    private UUID externalUuid;
 }
